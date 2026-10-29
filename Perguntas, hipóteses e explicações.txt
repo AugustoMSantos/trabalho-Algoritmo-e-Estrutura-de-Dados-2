@@ -1,0 +1,35 @@
+﻿Quais produtos têm a maior taxa de conversão (razão entre visualizados e comprados)?
+Hipótese: Produtos menos nichados de menor valor.
+
+
+Qual a taxa de produtos que são adicionados ao carrinho, mas não comprados?
+Hipótese: Produtos com versão similares com custo-benefício ou valor de mercado melhor.
+
+
+Qual a taxa de produtos que são vistos, mas não adicionados ao carrinho?
+Hipótese: Produtos podem ser caros demais para o consumidor médio final.
+
+
+Os produtos mais baratos são os mais vendidos de suas respectivas categorias?
+Hipótese: Não, mas as marcas mais “famosas” dominam o setor.
+
+---------------------------------------------------------------------------
+Explicações dos arquivos:
+
+
+Os arquivos foram estruturados de forma sequencial-indexada e gravados de forma binária (arquivos .dat). Os registros tem tamanho fixo, para isso utilizamos o #pragma pack (push, 1), para restringir o compilador a sempre deixar o offset de bits de cada struct igual.
+O arquivo produtos.dat tem 69 bytes por registro, com a seguinte organização:
+	id_produto: 4 bytes
+	marca: 30 bytes
+	categoria: 30 bytes
+	preço: 4 bytes
+	quebra linha: 1 byte (caractere \n)
+
+O arquivo acessos.dat possui 19 bytes por registro, com a seguinte organização:
+	id_evento: 4 bytes
+	id_produto: 4 bytes
+	tipo evento: 10 bytes
+	quebra linha: 1 byte (caractere \n)
+
+
+Os arquivos de índice possuem 12 bytes por entrada. Definimos o salto de indice_produtos.indice a cada 1000 registros, e do indice_acessos.indice a cada 10000. Isso está definido inicialmente no código através do #define, e pode ser alterado. Ambos utilizam pesquisa binária, com fseek.
