@@ -62,7 +62,6 @@ void pad_string(char *texto_destino, const char *texto_origem, int tamanho) {
 
 void imprimir_produto(const Produto *produto, long posicao) {
     if (produto->marca[0] == '*') {
-        printf("[Registro #%ld] ID: %d | [REMOVIDO]\n", posicao, produto->id_produto);
         return;
     }
     printf("[Registro #%ld] ID: %-10d | Marca: %.20s | Categoria: %.25s | Preco: $%.2f\n", posicao, produto->id_produto, produto->marca, produto->categoria, produto->preco);
@@ -1010,3 +1009,4 @@ int main() {
     construir_indice_acessos();
     return 0;
 }
+
